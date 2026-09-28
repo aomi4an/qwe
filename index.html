@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 DROP - Премиум площадка кейсов и апгрейдов</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#090a0f',
+                        cardbg: '#12151f',
+                        cardhover: '#1a1f30',
+                        accentorange: '#f59e0b',
+                        accentblue: '#3b82f6',
+                        accentpurple: '#8b5cf6',
+                        rarityConsumer: '#b0c3d9',
+                        rarityIndustrial: '#5e98d9',
+                        rarityMilSpec: '#4b69ff',
+                        rarityRestricted: '#8847ff',
+                        rarityClassified: '#d32ce6',
+                        rarityCovert: '#eb4b4b',
+                        raritySpecial: '#ffd700'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090a0f;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+        /* Glassmorphism */
+        .glass {
+            background: rgba(18, 21, 31, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(25, 30, 45, 0.8) 0%, rgba(15, 18, 28, 0.9) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        /* Glow effects */
+        .glow-orange {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+        }
+        .glow-blue {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+        }
+        .glow-purple {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(235, 75, 75, 0.4);
+        }
+        /* Rarities gradients */
+        .border-consumer { border-color: #b0c3d9; }
+        .border-industrial { border-color: #5e98d9; }
+        .border-milspec { border-color: #4b69ff; }
+        .border-restricted { border-color: #8847ff; }
+        .border-classified { border-color: #d32ce6; }
+        .border-covert { border-color: #eb4b4b; }
+        .border-special { border-color: #ffd700; }
+
+        .bg-consumer { background: radial-gradient(circle, rgba(176,195,217,0.2) 0%, rgba(18,21,31,0.9) 100%); }
+        .bg-industrial { background: radial-gradient(circle, rgba(94,152,217,0.2) 0%, rgba(18,21,31,0.9) 100%); }
+        .bg-milspec { background: radial-gradient(circle, rgba(75,105,255,0.25) 0%, rgba(18,21,31,0.9) 100%); }
+        .bg-restricted { background: radial-gradient(circle, rgba(136,71,255,0.25) 0%, rgba(18,21,31,0.9) 100%); }
+        .bg-classified { background: radial-gradient(circle, rgba(211,44,230,0.25) 0%, rgba(18,21,31,0.9) 100%); }
+        .bg-covert { background: radial-gradient(circle, rgba(235,75,75,0.3) 0%, rgba(18,21,31,0.9) 100%); }
+        .bg-special { background: radial-gradient(circle, rgba(255,215,0,0.35) 0%, rgba(18,21,31,0.9) 100%); }
+
+        /* Animation spinner */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="glass sticky top-0 z-50 px-4 lg:px-8 py-3 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('cases')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center glow-orange">
+                    <i class="fa-solid fa-crosshairs text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-heading text-2xl font-bold tracking-wider bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">CS2 DROP</span>
+                    <span class="block text-[10px] text-gray-400 tracking-widest uppercase -mt-1 font-semibold">Next Gen Platform</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-1">
+                <button onclick="switchTab('cases')" id="nav-cases" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-white/10 text-orange-400 flex items-center space-x-2">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Кейсы</span>
+                </button>
+                <button onclick="switchTab('upgrade')" id="nav-upgrade" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 flex items-center space-x-2">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Апгрейды</span>
+                </button>
+                <button onclick="switchTab('contracts')" id="nav-contracts" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 flex items-center space-x-2">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Контракты</span>
+                </button>
+                <button onclick="switchTab('cabinet')" id="nav-cabinet" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 flex items-center space-x-2">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span>Личный кабинет</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- User Wallet & Profile Info -->
+        <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2 bg-black/40 border border-white/10 px-3 py-1.5 rounded-xl">
+                <i class="fa-solid fa-wallet text-amber-400 text-sm"></i>
+                <span id="user-balance" class="font-heading text-lg font-bold text-amber-400">5,450.00 ₽</span>
+                <button onclick="openDepositModal()" class="ml-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white text-xs px-2.5 py-1 rounded-lg font-bold shadow-lg transition-all active:scale-95">
+                    <i class="fa-solid fa-plus mr-1"></i> Пополнить
+                </button>
+            </div>
+
+            <!-- Sound Toggle -->
+            <button onclick="toggleAudio()" id="sound-toggle" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-gray-300 transition-all" title="Звуковые эффекты">
+                <i id="sound-icon" class="fa-solid fa-volume-high"></i>
+            </button>
+
+            <!-- Profile Avatar & Dropdown -->
+            <div class="flex items-center space-x-3 bg-white/5 border border-white/10 p-1.5 pr-3 rounded-xl cursor-pointer hover:bg-white/10 transition-all" onclick="switchTab('cabinet')">
+                <img src="https://placehold.co/40x40/3b82f6/ffffff?text=PRO" alt="Avatar" class="w-8 h-8 rounded-lg object-cover border border-blue-500/50">
+                <div class="hidden sm:block text-left">
+                    <span class="block text-xs font-bold leading-none text-white">CyberGamer</span>
+                    <span class="text-[10px] text-amber-400 font-semibold">Уровень 42</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow container mx-auto px-4 py-6 max-w-7xl">
+
+        <!-- ==================== VIEW: CASES ==================== -->
+        <section id="view-cases" class="view-section space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-2xl glass p-8 border border-white/10 shadow-2xl bg-gradient-to-r from-blue-950/40 via-purple-950/40 to-slate-900/60">
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute right-40 -bottom-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-xs font-bold">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                        <span>НОВЫЙ СЕЗОН КОЛЛЕКЦИЙ CS2</span>
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight font-heading">
+                        ЛУЧШИЕ КЕЙСЫ С МОМЕНТАЛЬНЫМ ВЫВОДОМ
+                    </h1>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Открывай официальные и эксклюзивные кейсы с повышенным шансом выпадения ножей и перчаток. Честный алгоритм Provably Fair и быстрый обмен через Steam.
+                    </p>
+                    <div class="flex items-center space-x-4 pt-2">
+                        <div class="flex items-center space-x-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                            <span>100% честная игра</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-bolt text-amber-400"></i>
+                            <span>Вывод за 30 секунд</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-users text-blue-400"></i>
+                            <span>Более 14,000 онлайн</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Filter -->
+            <div class="flex items-center space-x-3 overflow-x-auto pb-2">
+                <button onclick="filterCases('all')" class="case-filter-btn active px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold text-sm transition-all shadow-lg shadow-orange-500/25 shrink-0">Все кейсы</button>
+                <button onclick="filterCases('exclusive')" class="case-filter-btn px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-semibold text-sm transition-all border border-white/10 shrink-0">Эксклюзивные</button>
+                <button onclick="filterCases('weapon')" class="case-filter-btn px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-semibold text-sm transition-all border border-white/10 shrink-0">Оружейные</button>
+                <button onclick="filterCases('knife')" class="case-filter-btn px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-semibold text-sm transition-all border border-white/10 shrink-0">Ножи и перчатки</button>
+            </div>
+
+            <!-- Cases Grid -->
+            <div id="cases-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Cases will be dynamically injected here -->
+            </div>
+        </section>
+
+        <!-- ==================== VIEW: UPGRADE ==================== -->
+        <section id="view-upgrade" class="view-section hidden space-y-8">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="text-center space-y-2">
+                    <h2 class="text-3xl lg:text-4xl font-extrabold font-heading bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">АПГРЕЙД СКИНОВ</h2>
+                    <p class="text-gray-400 text-sm">Умножь стоимость своего предмета в x2, x5 или x10 раз, рискнув ради топовой пушки!</p>
+                </div>
+
+                <!-- Upgrade Arena Box -->
+                <div class="glass-card rounded-2xl p-6 border border-white/10 shadow-2xl relative overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        
+                        <!-- Left: User Skin -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Ваш скин (отдается)</span>
+                                <button onclick="openInventorySelectorForUpgrade()" class="text-xs text-orange-400 hover:text-orange-300 font-bold bg-orange-500/10 px-3 py-1 rounded-lg border border-orange-500/20 transition-all">
+                                    <i class="fa-solid fa-arrow-right-arrow-left mr-1"></i> Выбрать из инвентаря
+                                </button>
+                            </div>
+                            <div id="upgrade-source-skin" onclick="openInventorySelectorForUpgrade()" class="glass rounded-xl p-4 border border-white/10 flex items-center space-x-4 cursor-pointer hover:border-orange-500/50 transition-all group">
+                                <div class="w-24 h-24 rounded-lg bg-black/40 flex items-center justify-center p-2 relative group-hover:scale-105 transition-transform">
+                                    <img id="source-skin-img" src="https://placehold.co/150x150/12151f/ffffff?text=Select" alt="Skin" class="max-h-full object-contain">
+                                </div>
+                                <div class="space-y-1">
+                                    <span id="source-skin-rarity" class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-blue-500/20 text-blue-400">Редкое</span>
+                                    <h4 id="source-skin-name" class="font-bold text-base text-white group-hover:text-orange-400 transition-colors">AWP | Черный Ниндзя</h4>
+                                    <p id="source-skin-price" class="font-heading text-xl font-bold text-amber-400">1,250.00 ₽</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Target Skin -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Желаемый скин (выигрыш)</span>
+                                <div class="flex space-x-1">
+                                    <button onclick="setMultiplier(2)" class="multiplier-btn px-2.5 py-1 rounded bg-orange-500 text-white text-xs font-bold transition-all">x2</button>
+                                    <button onclick="setMultiplier(5)" class="multiplier-btn px-2.5 py-1 rounded bg-white/5 text-gray-300 text-xs font-bold transition-all hover:bg-white/10">x5</button>
+                                    <button onclick="setMultiplier(10)" class="multiplier-btn px-2.5 py-1 rounded bg-white/5 text-gray-300 text-xs font-bold transition-all hover:bg-white/10">x10</button>
+                                </div>
+                            </div>
+                            <div id="upgrade-target-skin" class="glass rounded-xl p-4 border border-white/10 flex items-center space-x-4 relative overflow-hidden">
+                                <div class="w-24 h-24 rounded-lg bg-black/40 flex items-center justify-center p-2 relative">
+                                    <img id="target-skin-img" src="https://placehold.co/150x150/12151f/ffffff?text=Target" alt="Skin" class="max-h-full object-contain">
+                                </div>
+                                <div class="space-y-1">
+                                    <span id="target-skin-rarity" class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-red-500/20 text-red-400">Тайное</span>
+                                    <h4 id="target-skin-name" class="font-bold text-base text-white">Karambit | Градиент</h4>
+                                    <p id="target-skin-price" class="font-heading text-xl font-bold text-amber-400">2,500.00 ₽</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Upgrade Action & Success Chance Bar -->
+                    <div class="mt-8 pt-6 border-t border-white/10 space-y-4">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-400 font-semibold">Шанс успеха:</span>
+                            <span id="upgrade-chance-text" class="font-heading text-xl font-bold text-emerald-400">47.5%</span>
+                        </div>
+                        <div class="w-full h-3 bg-black/60 rounded-full overflow-hidden p-0.5 border border-white/10">
+                            <div id="upgrade-chance-bar" class="h-full bg-gradient-to-r from-emerald-500 to-amber-500 rounded-full transition-all duration-500" style="width: 47.5%;"></div>
+                        </div>
+
+                        <div class="pt-4 flex justify-center">
+                            <button onclick="startUpgrade()" id="upgrade-action-btn" class="w-full md:w-80 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 hover:from-amber-400 hover:to-red-500 text-white font-heading font-bold text-xl tracking-wider shadow-xl shadow-orange-500/30 transition-all active:scale-95 flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>СОВЕРШИТЬ АПГРЕЙД</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW: CONTRACTS ==================== -->
+        <section id="view-contracts" class="view-section hidden space-y-8">
+            <div class="max-w-5xl mx-auto space-y-6">
+                <div class="text-center space-y-2">
+                    <h2 class="text-3xl lg:text-4xl font-extrabold font-heading bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">КОНТРАКТЫ ОБМЕНА</h2>
+                    <p class="text-gray-400 text-sm">Сдайте от 3 до 10 скинов одинакового качества и получите взамен один случайный скин более высокого уровня!</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left: Selected Skins (Slots) -->
+                    <div class="lg:col-span-2 glass-card rounded-2xl p-6 border border-white/10 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-heading font-bold text-xl text-white flex items-center space-x-2">
+                                <i class="fa-solid fa-layer-group text-purple-400"></i>
+                                <span>Выбранные скины для контракта</span>
+                            </h3>
+                            <span id="contract-count" class="text-xs font-bold px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">0 / 10 выбрано</span>
+                        </div>
+
+                        <!-- 10 Slots Grid -->
+                        <div id="contract-slots" class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                            <!-- Slots will be populated by JS -->
+                        </div>
+
+                        <!-- Contract Summary & Button -->
+                        <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <span class="text-xs text-gray-400 block">Общая стоимость вложений:</span>
+                                <span id="contract-total-price" class="font-heading text-2xl font-bold text-amber-400">0.00 ₽</span>
+                            </div>
+                            <button onclick="executeContract()" id="contract-execute-btn" disabled class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-heading font-bold text-lg tracking-wider shadow-xl shadow-purple-500/25 transition-all">
+                                ПОДПИСАТЬ КОНТРАКТ
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Available Inventory for Contract -->
+                    <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-4 flex flex-col h-[500px]">
+                        <h3 class="font-heading font-bold text-lg text-white flex items-center space-x-2">
+                            <i class="fa-solid fa-box text-blue-400"></i>
+                            <span>Ваш инвентарь</span>
+                        </h3>
+                        <p class="text-xs text-gray-400">Нажмите на скин, чтобы добавить его в контракт.</p>
+                        
+                        <div id="contract-inventory-list" class="flex-grow overflow-y-auto space-y-2 pr-1">
+                            <!-- Inventory items for contract -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW: CABINET (PROFILE) ==================== -->
+        <section id="view-cabinet" class="view-section hidden space-y-8">
+            <div class="max-w-6xl mx-auto space-y-8">
+                <!-- User Profile Header Card -->
+                <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+                    <div class="absolute -left-20 -top-20 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="flex items-center space-x-6 z-10">
+                        <img src="https://placehold.co/100x100/3b82f6/ffffff?text=PRO" alt="Avatar" class="w-20 h-20 rounded-2xl object-cover border-2 border-blue-500 shadow-xl">
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-3">
+                                <h2 class="text-2xl font-extrabold font-heading text-white">CyberGamer_777</h2>
+                                <span class="bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">VIP Elite</span>
+                            </div>
+                            <p class="text-xs text-gray-400">Steam ID: 76561198812345678</p>
+                            <div class="flex items-center space-x-2 pt-1 text-xs text-emerald-400">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Steam Trade URL привязан</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 z-10">
+                        <div class="text-right">
+                            <span class="text-xs text-gray-400 block">Баланс счета</span>
+                            <span id="cabinet-balance" class="font-heading text-3xl font-bold text-amber-400">5,450.00 ₽</span>
+                        </div>
+                        <button onclick="openDepositModal()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 text-white font-bold shadow-lg transition-all active:scale-95">
+                            <i class="fa-solid fa-wallet mr-2"></i> Пополнить
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs inside Cabinet -->
+                <div class="flex items-center space-x-3 border-b border-white/10 pb-4">
+                    <button onclick="switchCabinetTab('inventory')" id="cab-tab-inventory" class="cab-tab-btn px-5 py-2.5 rounded-xl bg-white/10 text-white font-bold text-sm transition-all shadow-lg">
+                        <i class="fa-solid fa-box-archive mr-2"></i> Инвентарь (<span id="inventory-count-badge">0</span>)
+                    </button>
+                    <button onclick="switchCabinetTab('history')" id="cab-tab-history" class="cab-tab-btn px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 font-bold text-sm transition-all">
+                        <i class="fa-solid fa-clock-rotate-left mr-2"></i> История операций
+                    </button>
+                    <button onclick="switchCabinetTab('stats')" id="cab-tab-stats" class="cab-tab-btn px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 font-bold text-sm transition-all">
+                        <i class="fa-solid fa-chart-pie mr-2"></i> Статистика
+                    </button>
+                </div>
+
+                <!-- Cabinet Tab Content: Inventory -->
+                <div id="cab-content-inventory" class="space-y-4">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center space-x-3 w-full sm:w-auto">
+                            <input type="text" id="inventory-search" placeholder="Поиск по скинам..." oninput="renderInventory()" class="bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-orange-500 w-full sm:w-64">
+                            <select id="inventory-sort" onchange="renderInventory()" class="bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-orange-500">
+                                <option value="price-desc">По цене (дорогие)</option>
+                                <option value="price-asc">По цене (дешевые)</option>
+                                <option value="rarity">По редкости</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="sellAllSelectedSkins()" class="bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-4 py-2 rounded-xl text-xs font-bold transition-all">
+                                <i class="fa-solid fa-coins mr-1 text-amber-400"></i> Продать все дешевые
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Grid -->
+                    <div id="inventory-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <!-- Inventory items populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Cabinet Tab Content: History -->
+                <div id="cab-content-history" class="hidden space-y-4">
+                    <div class="glass-card rounded-2xl p-6 border border-white/10 overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="border-b border-white/10 text-gray-400 text-xs uppercase font-heading">
+                                    <th class="pb-3">Операция</th>
+                                    <th class="pb-3">Предмет / Детали</th>
+                                    <th class="pb-3">Сумма</th>
+                                    <th class="pb-3">Статус</th>
+                                    <th class="pb-3 text-right">Время</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body" class="divide-y divide-white/5">
+                                <!-- History rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Cabinet Tab Content: Stats -->
+                <div id="cab-content-stats" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-2">
+                        <span class="text-xs text-gray-400 uppercase font-semibold">Всего открыто кейсов</span>
+                        <h3 id="stat-cases-opened" class="font-heading text-3xl font-bold text-white">48</h3>
+                        <p class="text-xs text-emerald-400"><i class="fa-solid fa-arrow-trend-up"></i> +12 за сегодня</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-2">
+                        <span class="text-xs text-gray-400 uppercase font-semibold">Самый дорогой выигрыш</span>
+                        <h3 id="stat-max-win" class="font-heading text-3xl font-bold text-amber-400">28,500 ₽</h3>
+                        <p class="text-xs text-gray-400">AWP | История о драконе (Factory New)</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 border border-white/10 space-y-2">
+                        <span class="text-xs text-gray-400 uppercase font-semibold">Чистый профит</span>
+                        <h3 id="stat-net-profit" class="font-heading text-3xl font-bold text-emerald-400">+14,230 ₽</h3>
+                        <p class="text-xs text-emerald-400">Успешных открытий: 64%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Case Opening Modal / Overlay -->
+    <div id="case-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 lg:p-10 max-w-4xl w-full border border-white/15 shadow-2xl relative space-y-8">
+            <button onclick="closeCaseModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <h3 id="modal-case-title" class="font-heading text-3xl font-bold text-white">Открытие кейса: Легенды CS2</h3>
+                <p class="text-xs text-gray-400">Барабан вращается, удача уже близко...</p>
+            </div>
+
+            <!-- Spinning Roulette Container -->
+            <div class="relative overflow-hidden rounded-2xl bg-black/60 border border-white/10 py-8 px-4">
+                <!-- Center Indicator Line -->
+                <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-amber-500 z-20 shadow-[0_0_15px_#f59e0b]"></div>
+                <div class="absolute left-1/2 top-2 -translate-x-1/2 z-30 w-3 h-3 bg-amber-500 rotate-45 shadow-[0_0_10px_#f59e0b]"></div>
+
+                <!-- Roulette Strip -->
+                <div id="roulette-strip" class="flex items-center space-x-4 transition-all duration-[6000ms] ease-out will-change-transform" style="transform: translateX(0px);">
+                    <!-- Roulette items populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Result Box (Hidden until finish) -->
+            <div id="roulette-result" class="hidden text-center space-y-4 animate-bounce">
+                <div class="inline-block p-4 rounded-2xl bg-gradient-to-tr from-amber-500/20 to-orange-500/20 border border-amber-500/40 glow-orange">
+                    <span id="result-rarity" class="text-xs uppercase font-bold tracking-widest px-3 py-1 rounded bg-red-500/20 text-red-400 block mb-2">Тайное</span>
+                    <h4 id="result-name" class="font-heading text-2xl font-bold text-white">AWP | История о драконе</h4>
+                    <p id="result-price" class="font-heading text-xl font-bold text-amber-400 mt-1">28,500.00 ₽</p>
+                </div>
+                <div>
+                    <button onclick="closeCaseModal()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 text-white font-heading font-bold text-lg shadow-lg">
+                        ЗАБРАТЬ В ИНВЕНТАРЬ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Spin Button -->
+            <div id="roulette-actions" class="flex justify-center">
+                <button id="spin-btn" onclick="startSpinning()" class="px-12 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 hover:from-amber-400 text-white font-heading font-bold text-2xl tracking-wider shadow-2xl shadow-orange-500/40 transition-all active:scale-95">
+                    КРУТИТЬ КЕЙС ( <span id="modal-case-price">350 ₽</span> )
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div id="deposit-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-8 max-w-md w-full border border-white/15 shadow-2xl relative space-y-6">
+            <button onclick="closeDepositModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-heading text-2xl font-bold text-white">Пополнение баланса</h3>
+            <p class="text-xs text-gray-400">Выберите удобный способ оплаты. Средства зачисляются мгновенно.</p>
+            
+            <div class="space-y-3">
+                <label class="text-xs font-semibold text-gray-300">Сумма пополнения (₽)</label>
+                <input type="number" id="deposit-amount" value="1000" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-lg font-bold text-white focus:outline-none focus:border-orange-500">
+                
+                <div class="grid grid-cols-4 gap-2 pt-1">
+                    <button onclick="setDeposit(500)" class="py-2 bg-white/5 hover:bg-white/10 rounded-xl text-xs font-bold border border-white/10">500 ₽</button>
+                    <button onclick="setDeposit(1000)" class="py-2 bg-white/5 hover:bg-white/10 rounded-xl text-xs font-bold border border-white/10">1,000 ₽</button>
+                    <button onclick="setDeposit(5000)" class="py-2 bg-white/5 hover:bg-white/10 rounded-xl text-xs font-bold border border-white/10">5,000 ₽</button>
+                    <button onclick="setDeposit(10000)" class="py-2 bg-white/5 hover:bg-white/10 rounded-xl text-xs font-bold border border-white/10">10,000 ₽</button>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2">
+                <button onclick="confirmDeposit()" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-lg shadow-xl shadow-orange-500/25">
+                    ОПЛАТИТЬ СЕРВИС
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 space-y-3 pointer-events-none"></div>
+
+    <!-- Footer -->
+    <footer class="glass mt-12 py-6 border-t border-white/10 text-center text-xs text-gray-400">
+        <div class="container mx-auto px-4 space-y-2">
+            <p>© 2026 CS2 DROP. Не связано с Valve Corp. Все права защищены.</p>
+            <p class="text-gray-500">Система Provably Fair • Безопасные сделки • Круглосуточная поддержка</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        
+        // User Balance & Inventory State
+        let userBalance = 5450.00;
+        let inventory = [
+            { id: 1, name: 'AK-47 | Вулкан', rarity: 'covert', price: 14500.00, img: 'https://placehold.co/200x200/12151f/eb4b4b?text=AK-47+Vulcan' },
+            { id: 2, name: 'M4A1-2 | Скоростной зверь', rarity: 'classified', price: 4200.00, img: 'https://placehold.co/200x200/12151f/d32ce6?text=M4A1-S+HyperBeast' },
+            { id: 3, name: 'AWP | Ахерон', rarity: 'restricted', price: 850.00, img: 'https://placehold.co/200x200/12151f/8847ff?text=AWP+Acheron' },
+            { id: 4, name: 'USP-S | Неонуар', rarity: 'classified', price: 3100.00, img: 'https://placehold.co/200x200/12151f/d32ce6?text=USP-S+NeoNoir' },
+            { id: 5, name: 'Glock-18 | Пр. вода', rarity: 'milspec', price: 320.00, img: 'https://placehold.co/200x200/12151f/4b69ff?text=Glock+Water' },
+            { id: 6, name: 'Desert Eagle | Пламя', rarity: 'covert', price: 18900.00, img: 'https://placehold.co/200x200/12151f/eb4b4b?text=Deagle+Blaze' }
+        ];
+
+        let historyLog = [
+            { type: 'Открытие кейса', details: 'Кейс "Легенды CS2"', amount: '-350.00 ₽', status: 'Успешно', time: '10:42' },
+            { type: 'Апгрейд', details: 'AWP Acheron -> Karambit', amount: '+2,500.00 ₽', status: 'Успешно', time: '09:15' },
+            { type: 'Пополнение', details: 'Банковская карта', amount: '+5,000.00 ₽', status: 'Зачислено', time: 'Вчера' }
+        ];
+
+        // Cases Database
+        const casesDB = [
+            { id: 'c1', name: 'Легенды CS2', price: 350, type: 'exclusive', img: 'https://placehold.co/250x250/12151f/f59e0b?text=Case+Legends', badge: 'Хит' },
+            { id: 'c2', name: 'Оружейный Арсенал', price: 190, type: 'weapon', img: 'https://placehold.co/250x250/12151f/3b82f6?text=Weapon+Case', badge: 'Популярный' },
+            { id: 'c3', name: 'Ножи и Перчатки', price: 1250, type: 'knife', img: 'https://placehold.co/250x250/12151f/ef4444?text=Knives+Gloves', badge: 'VIP' },
+            { id: 'c4', name: 'Anubis Collection', price: 220, type: 'weapon', img: 'https://placehold.co/250x250/12151f/8b5cf6?text=Anubis', badge: 'Новинка' },
+            { id: 'c5', name: 'Nightmare Box', price: 480, type: 'exclusive', img: 'https://placehold.co/250x250/12151f/ec4899?text=Nightmare', badge: '-20%' },
+            { id: 'c6', name: 'Revolution Case', price: 290, type: 'weapon', img: 'https://placehold.co/250x250/12151f/10b981?text=Revolution', badge: '' },
+            { id: 'c7', name: 'Dreams & Nightmares', price: 310, type: 'exclusive', img: 'https://placehold.co/250x250/12151f/6366f1?text=Dreams', badge: '' },
+            { id: 'c8', name: 'Gamma Doppler Pack', price: 890, type: 'knife', img: 'https://placehold.co/250x250/12151f/14b8a6?text=Gamma+Pack', badge: 'ТОП' }
+        ];
+
+        // Skins pool for cases
+        const caseSkinsPool = [
+            { name: 'P250 | Песчаная дюна', rarity: 'consumer', price: 15, img: 'https://placehold.co/150x150/12151f/b0c3d9?text=P250+Sand' },
+            { name: 'MP7 | Циркулярка', rarity: 'industrial', price: 45, img: 'https://placehold.co/150x150/12151f/5e98d9?text=MP7+Surge' },
+            { name: 'Glock-18 | Синий вал', rarity: 'milspec', price: 180, img: 'https://placehold.co/150x150/12151f/4b69ff?text=Glock+Blue' },
+            { name: 'AK-47 | Сланец', rarity: 'restricted', price: 450, img: 'https://placehold.co/150x150/12151f/8847ff?text=AK47+Slate' },
+            { name: 'M4A4 | Император', rarity: 'classified', price: 3200, img: 'https://placehold.co/150x150/12151f/d32ce6?text=M4A4+Emperor' },
+            { name: 'AWP | Дикий огонь', rarity: 'covert', price: 9400, img: 'https://placehold.co/150x150/12151f/eb4b4b?text=AWP+Wildfire' },
+            { name: 'Karambit | Кровавая паутина', rarity: 'special', price: 45000, img: 'https://placehold.co/150x150/12151f/ffd700?text=Karambit+Web' }
+        ];
+
+        let soundEnabled = true;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            } else if (type === 'tick') {
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.03);
+            } else if (type === 'win') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+                osc.frequency.setValueAtTime(1046.50, audioCtx.currentTime + 0.3); // C6
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.6);
+            }
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-amber-400';
+                showToast('Звуковые эффекты включены', 'success');
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-gray-500';
+                showToast('Звуки отключены', 'info');
+            }
+        }
+
+        function switchTab(tabId) {
+            playSound('click');
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = 'nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 flex items-center space-x-2';
+            });
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.className = 'nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all bg-white/10 text-orange-400 flex items-center space-x-2';
+            }
+
+            if (tabId === 'cabinet') {
+                renderInventory();
+                renderHistory();
+            }
+            if (tabId === 'contracts') {
+                renderContractInventory();
+                renderContractSlots();
+            }
+        }
+
+        function renderCases(filter = 'all') {
+            const grid = document.getElementById('cases-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' ? casesDB : casesDB.filter(c => c.type === filter);
+
+            filtered.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl p-5 border border-white/10 flex flex-col items-center text-center space-y-4 hover:border-orange-500/50 transition-all group cursor-pointer relative overflow-hidden';
+                card.onclick = () => openCaseModal(c);
+
+                if (c.badge) {
+                    card.innerHTML += `<div class="absolute top-3 right-3 bg-orange-500/20 border border-orange-500/40 text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded-full">${c.badge}</div>`;
+                }
+
+                card.innerHTML += `
+                    <div class="w-36 h-36 flex items-center justify-center relative group-hover:scale-110 transition-transform duration-300">
+                        <img src="${c.img}" alt="${c.name}" class="max-h-full object-contain">
+                    </div>
+                    <div class="space-y-1 w-full">
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-orange-400 transition-colors">${c.name}</h3>
+                        <p class="font-heading text-xl font-bold text-amber-400">${c.price.toLocaleString()} ₽</p>
+                    </div>
+                    <button class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 text-white font-heading font-bold text-sm shadow-lg transition-all">
+                        ОТКРЫТЬ КЕЙС
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCases(type) {
+            playSound('click');
+            document.querySelectorAll('.case-filter-btn').forEach(btn => {
+                btn.className = 'case-filter-btn px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 font-semibold text-sm transition-all border border-white/10 shrink-0';
+            });
+            event.currentTarget.className = 'case-filter-btn px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold text-sm transition-all shadow-lg shadow-orange-500/25 shrink-0';
+            renderCases(type);
+        }
+
+        let activeCase = null;
+
+        function openCaseModal(c) {
+            playSound('click');
+            activeCase = c;
+            document.getElementById('modal-case-title').innerText = `Кейс: ${c.name}`;
+            document.getElementById('modal-case-price').innerText = `${c.price} ₽`;
+            document.getElementById('roulette-result').classList.add('hidden');
+            document.getElementById('spin-btn').disabled = false;
+            document.getElementById('spin-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+
+            setupRouletteStrip();
+            document.getElementById('case-modal').classList.remove('hidden');
+        }
+
+        function closeCaseModal() {
+            playSound('click');
+            document.getElementById('case-modal').classList.add('hidden');
+        }
+
+        function setupRouletteStrip() {
+            const strip = document.getElementById('roulette-strip');
+            strip.style.transition = 'none';
+            strip.style.transform = 'translateX(0px)';
+            strip.innerHTML = '';
+
+            // Generate 50 items for smooth roulette effect
+            for (let i = 0; i < 60; i++) {
+                const randomSkin = caseSkinsPool[Math.floor(Math.random() * caseSkinsPool.length)];
+                const item = document.createElement('div');
+                item.className = `w-40 h-44 shrink-0 rounded-2xl glass border border-white/15 flex flex-col items-center justify-between p-3 bg-${randomSkin.rarity}`;
+                item.innerHTML = `
+                    <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-black/40 text-gray-300">${randomSkin.rarity}</span>
+                    <img src="${randomSkin.img}" alt="skin" class="w-24 h-24 object-contain">
+                    <div class="text-center w-full">
+                        <span class="block text-xs font-bold text-white truncate">${randomSkin.name}</span>
+                        <span class="font-heading text-xs font-bold text-amber-400">${randomSkin.price} ₽</span>
+                    </div>
+                `;
+                strip.appendChild(item);
+            }
+        }
+
+        function startSpinning() {
+            if (userBalance < activeCase.price) {
+                showToast('Недостаточно средств на балансе!', 'error');
+                return;
+            }
+
+            userBalance -= activeCase.price;
+            updateBalanceUI();
+            playSound('click');
+
+            document.getElementById('spin-btn').disabled = true;
+            document.getElementById('spin-btn').classList.add('opacity-50', 'cursor-not-allowed');
+            document.getElementById('roulette-result').classList.add('hidden');
+
+            const strip = document.getElementById('roulette-strip');
+            
+            // Random winning index around 45
+            const winningIndex = 43;
+            const itemWidth = 160 + 16; // width + gap
+            const containerWidth = strip.parentElement.clientWidth;
+            const offset = (winningIndex * itemWidth) - (containerWidth / 2) + (itemWidth / 2) + (Math.random() * 40 - 20);
+
+            strip.style.transition = 'transform 5s cubic-bezier(0.15, 0.85, 0.35, 1)';
+            strip.style.transform = `translateX(-${offset}px)`;
+
+            // Sound ticks during spin
+            let tickInterval = setInterval(() => playSound('tick'), 150);
+            setTimeout(() => clearInterval(tickInterval), 5000);
+
+            // Determine winning skin after animation
+            setTimeout(() => {
+                playSound('win');
+                const winningCardElement = strip.children[winningIndex];
+                // Extract skin data
+                const wonSkinName = winningCardElement.querySelector('span.truncate').innerText;
+                const wonSkinPriceStr = winningCardElement.querySelector('.text-amber-400').innerText;
+                const wonSkinPrice = parseInt(wonSkinPriceStr);
+                const wonSkinRarity = winningCardElement.querySelector('span.uppercase').innerText.toLowerCase();
+                const wonSkinImg = winningCardElement.querySelector('img').src;
+
+                // Add to inventory
+                const newSkinItem = {
+                    id: Date.now(),
+                    name: wonSkinName,
+                    rarity: wonSkinRarity,
+                    price: wonSkinPrice,
+                    img: wonSkinImg
+                };
+                inventory.unshift(newSkinItem);
+
+                // Add to history
+                historyLog.unshift({
+                    type: 'Открытие кейса',
+                    details: `${activeCase.name} -> ${wonSkinName}`,
+                    amount: `-${activeCase.price} ₽`,
+                    status: 'Выигрыш',
+                    time: 'Только что'
+                });
+
+                // Show Result Box
+                document.getElementById('result-name').innerText = wonSkinName;
+                document.getElementById('result-price').innerText = `${wonSkinPrice} ₽`;
+                document.getElementById('result-rarity').innerText = wonSkinRarity.toUpperCase();
+                document.getElementById('roulette-result').classList.remove('hidden');
+
+                showToast(`Поздравляем с выигрышем: ${wonSkinName}!`, 'success');
+            }, 5200);
+        }
+
+        let currentUpgradeMultiplier = 2;
+        let selectedSourceSkin = inventory[0];
+        let targetSkin = { name: 'Karambit | Градиент', rarity: 'special', price: selectedSourceSkin.price * 2, img: 'https://placehold.co/150x150/12151f/ffd700?text=Karambit+Fade' };
+
+        function updateUpgradeUI() {
+            if (!selectedSourceSkin) return;
+            document.getElementById('source-skin-name').innerText = selectedSourceSkin.name;
+            document.getElementById('source-skin-price').innerText = `${selectedSourceSkin.price.toLocaleString()} ₽`;
+            document.getElementById('source-skin-img').src = selectedSourceSkin.img;
+            document.getElementById('source-skin-rarity').innerText = selectedSourceSkin.rarity.toUpperCase();
+
+            const targetPrice = selectedSourceSkin.price * currentUpgradeMultiplier;
+            document.getElementById('target-skin-name').innerText = `Элитный приз (x${currentUpgradeMultiplier})`;
+            document.getElementById('target-skin-price').innerText = `${targetPrice.toLocaleString()} ₽`;
+
+            // Calculate chance (e.g. base 47.5% divided by multiplier)
+            let chance = Math.min(95, Math.max(5, (100 / currentUpgradeMultiplier) * 0.95)).toFixed(1);
+            document.getElementById('upgrade-chance-text').innerText = `${chance}%`;
+            document.getElementById('upgrade-chance-bar').style.width = `${chance}%`;
+        }
+
+        function setMultiplier(mult) {
+            playSound('click');
+            currentUpgradeMultiplier = mult;
+            document.querySelectorAll('.multiplier-btn').forEach(btn => {
+                btn.className = 'multiplier-btn px-2.5 py-1 rounded bg-white/5 text-gray-300 text-xs font-bold transition-all hover:bg-white/10';
+            });
+            event.currentTarget.className = 'multiplier-btn px-2.5 py-1 rounded bg-orange-500 text-white text-xs font-bold transition-all';
+            updateUpgradeUI();
+        }
+
+        function startUpgrade() {
+            if (!selectedSourceSkin) {
+                showToast('Выберите скин для апгрейва!', 'error');
+                return;
+            }
+
+            playSound('click');
+            const chance = (100 / currentUpgradeMultiplier) * 0.95;
+            const roll = Math.random() * 100;
+
+            // Remove source skin from inventory
+            inventory = inventory.filter(s => s.id !== selectedSourceSkin.id);
+
+            if (roll <= chance) {
+                playSound('win');
+                const wonPrice = selectedSourceSkin.price * currentUpgradeMultiplier;
+                const wonSkin = {
+                    id: Date.now(),
+                    name: `Upgrade (x${currentUpgradeMultiplier}) Winner`,
+                    rarity: 'covert',
+                    price: wonPrice,
+                    img: selectedSourceSkin.img
+                };
+                inventory.unshift(wonSkin);
+                showToast(`Апгрейд успешен! Вы выиграли скин стоимостью ${wonPrice.toLocaleString()} ₽`, 'success');
+            } else {
+                showToast('К сожалению, апгрейд не удался. Скин сгорел.', 'error');
+            }
+
+            if (inventory.length > 0) {
+                selectedSourceSkin = inventory[0];
+            } else {
+                selectedSourceSkin = { name: 'Нет скинов', price: 0, rarity: 'consumer', img: '' };
+            }
+            updateUpgradeUI();
+        }
+
+        function openInventorySelectorForUpgrade() {
+            if (inventory.length === 0) {
+                showToast('Ваш инвентарь пуст!', 'error');
+                return;
+            }
+            // For simplicity, cycle to next inventory item
+            const currentIndex = inventory.findIndex(s => s.id === selectedSourceSkin.id);
+            const nextIndex = (currentIndex + 1) % inventory.length;
+            selectedSourceSkin = inventory[nextIndex];
+            updateUpgradeUI();
+            showToast('Скин для апгрейда изменен', 'info');
+        }
+
+        let contractSelectedSkins = [];
+
+        function renderContractInventory() {
+            const list = document.getElementById('contract-inventory-list');
+            list.innerHTML = '';
+
+            if (inventory.length === 0) {
+                list.innerHTML = `<p class="text-xs text-gray-500 text-center py-6">Инвентарь пуст</p>`;
+                return;
+            }
+
+            inventory.forEach(skin => {
+                const isSelected = contractSelectedSkins.some(s => s.id === skin.id);
+                const item = document.createElement('div');
+                item.className = `glass rounded-xl p-3 flex items-center justify-between border ${isSelected ? 'border-purple-500 bg-purple-500/10' : 'border-white/10 hover:border-white/30'} cursor-pointer transition-all`;
+                item.onclick = () => toggleSkinInContract(skin);
+
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${skin.img}" alt="skin" class="w-12 h-12 object-contain bg-black/30 rounded-lg p-1">
+                        <div>
+                            <span class="block text-xs font-bold text-white">${skin.name}</span>
+                            <span class="text-[10px] uppercase text-gray-400">${skin.rarity}</span>
+                        </div>
+                    </div>
+                    <span class="font-heading text-sm font-bold text-amber-400">${skin.price} ₽</span>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function toggleSkinInContract(skin) {
+            playSound('click');
+            const index = contractSelectedSkins.findIndex(s => s.id === skin.id);
+            if (index > -1) {
+                contractSelectedSkins.splice(index, 1);
+            } else {
+                if (contractSelectedSkins.length >= 10) {
+                    showToast('В контракт можно добавить максимум 10 скинов!', 'error');
+                    return;
+                }
+                contractSelectedSkins.push(skin);
+            }
+            renderContractSlots();
+            renderContractInventory();
+        }
+
+        function renderContractSlots() {
+            const grid = document.getElementById('contract-slots');
+            grid.innerHTML = '';
+
+            let totalPrice = 0;
+
+            for (let i = 0; i < 10; i++) {
+                const skin = contractSelectedSkins[i];
+                const slot = document.createElement('div');
+                
+                if (skin) {
+                    totalPrice += skin.price;
+                    slot.className = 'glass rounded-xl p-2 border border-purple-500/50 flex flex-col items-center justify-between relative group h-32 bg-purple-500/10';
+                    slot.innerHTML = `
+                        <button onclick="toggleSkinInContract({id: ${skin.id}})" class="absolute top-1 right-1 text-red-400 hover:text-red-300 text-xs bg-black/60 rounded-full w-5 h-5 flex items-center justify-center">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <img src="${skin.img}" alt="skin" class="w-16 h-16 object-contain">
+                        <div class="text-center w-full">
+                            <span class="block text-[10px] font-bold text-white truncate">${skin.name}</span>
+                            <span class="font-heading text-xs font-bold text-amber-400">${skin.price} ₽</span>
+                        </div>
+                    `;
+                } else {
+                    slot.className = 'rounded-xl border border-dashed border-white/15 flex items-center justify-center h-32 bg-black/20 text-gray-600 font-heading text-lg';
+                    slot.innerHTML = `<i class="fa-solid fa-plus"></i>`;
+                }
+                grid.appendChild(slot);
+            }
+
+            document.getElementById('contract-count').innerText = `${contractSelectedSkins.length} / 10 выбрано`;
+            document.getElementById('contract-total-price').innerText = `${totalPrice.toLocaleString()} ₽`;
+
+            const execBtn = document.getElementById('contract-execute-btn');
+            if (contractSelectedSkins.length >= 3) {
+                execBtn.disabled = false;
+            } else {
+                execBtn.disabled = true;
+            }
+        }
+
+        function executeContract() {
+            if (contractSelectedSkins.length < 3) return;
+
+            playSound('win');
+            const totalPrice = contractSelectedSkins.reduce((sum, s) => sum + s.price, 0);
+            const rewardPrice = totalPrice * (1.15 + Math.random() * 0.3); // 15-45% profit margin
+
+            // Remove used skins from inventory
+            const usedIds = contractSelectedSkins.map(s => s.id);
+            inventory = inventory.filter(s => !usedIds.includes(s.id));
+
+            // Add reward skin
+            const rewardSkin = {
+                id: Date.now(),
+                name: 'Контрактный бонус | Элитный скин',
+                rarity: 'covert',
+                price: Math.round(rewardPrice),
+                img: 'https://placehold.co/150x150/12151f/eb4b4b?text=Contract+Reward'
+            };
+            inventory.unshift(rewardSkin);
+
+            contractSelectedSkins = [];
+            renderContractSlots();
+            renderContractInventory();
+            showToast(`Контракт успешно подписан! Вы получили скин стоимостью ${Math.round(rewardPrice).toLocaleString()} ₽`, 'success');
+        }
+
+        function switchCabinetTab(tabId) {
+            playSound('click');
+            document.querySelectorAll('.cab-content-inventory, #cab-content-history, #cab-content-stats').forEach(el => el.classList.add('hidden'));
+            
+            document.getElementById(`cab-content-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.cab-tab-btn').forEach(btn => {
+                btn.className = 'cab-tab-btn px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 font-bold text-sm transition-all';
+            });
+            document.getElementById(`cab-tab-${tabId}`).className = 'cab-tab-btn px-5 py-2.5 rounded-xl bg-white/10 text-white font-bold text-sm transition-all shadow-lg';
+        }
+
+        function renderInventory() {
+            const grid = document.getElementById('inventory-grid');
+            grid.innerHTML = '';
+            document.getElementById('inventory-count-badge').innerText = inventory.length;
+
+            const searchQuery = document.getElementById('inventory-search').value.toLowerCase();
+            const sortBy = document.getElementById('inventory-sort').value;
+
+            let filtered = inventory.filter(s => s.name.toLowerCase().includes(searchQuery));
+
+            if (sortBy === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+            if (sortBy === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">Предметы не найдены</div>`;
+                return;
+            }
+
+            filtered.forEach(skin => {
+                const card = document.createElement('div');
+                card.className = `glass-card rounded-2xl p-4 border border-white/10 flex flex-col items-center justify-between space-y-3 bg-${skin.rarity} relative group`;
+                card.innerHTML = `
+                    <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-black/40 text-gray-300">${skin.rarity}</span>
+                    <img src="${skin.img}" alt="skin" class="w-28 h-28 object-contain group-hover:scale-105 transition-transform">
+                    <div class="text-center w-full">
+                        <span class="block text-xs font-bold text-white truncate">${skin.name}</span>
+                        <span class="font-heading text-sm font-bold text-amber-400">${skin.price.toLocaleString()} ₽</span>
+                    </div>
+                    <button onclick="sellSkin(${skin.id})" class="w-full py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 transition-all">
+                        Продать за ${skin.price.toLocaleString()} ₽
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function sellSkin(id) {
+            playSound('click');
+            const skin = inventory.find(s => s.id === id);
+            if (!skin) return;
+
+            userBalance += skin.price;
+            inventory = inventory.filter(s => s.id !== id);
+            updateBalanceUI();
+            renderInventory();
+
+            historyLog.unshift({
+                type: 'Продача скина',
+                details: skin.name,
+                amount: `+${skin.price} ₽`,
+                status: 'Зачислено',
+                time: 'Только что'
+            });
+
+            showToast(`Скин продан за ${skin.price} ₽`, 'success');
+        }
+
+        function sellAllSelectedSkins() {
+            playSound('click');
+            const cheapSkins = inventory.filter(s => s.price < 1000);
+            if (cheapSkins.length === 0) {
+                showToast('Нет дешевых скинов для продажи (< 1000 ₽)', 'info');
+                return;
+            }
+
+            const totalSum = cheapSkins.reduce((sum, s) => sum + s.price, 0);
+            userBalance += totalSum;
+            inventory = inventory.filter(s => s.price >= 1000);
+            updateBalanceUI();
+            renderInventory();
+
+            showToast(`Продано ${cheapSkins.length} предметов на сумму ${totalSum} ₽`, 'success');
+        }
+
+        function renderHistory() {
+            const tbody = document.getElementById('history-table-body');
+            tbody.innerHTML = '';
+
+            historyLog.forEach(h => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-white/5 transition-colors';
+                row.innerHTML = `
+                    <td class="py-3 font-semibold text-white">${h.type}</td>
+                    <td class="py-3 text-gray-300">${h.details}</td>
+                    <td class="py-3 font-heading font-bold ${h.amount.startsWith('+') ? 'text-emerald-400' : 'text-amber-400'}">${h.amount}</td>
+                    <td class="py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400">${h.status}</span></td>
+                    <td class="py-3 text-right text-gray-400 text-xs">${h.time}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateBalanceUI() {
+            document.getElementById('user-balance').innerText = `${userBalance.toLocaleString()} ₽`;
+            document.getElementById('cabinet-balance').innerText = `${userBalance.toLocaleString()} ₽`;
+        }
+
+        function openDepositModal() {
+            playSound('click');
+            document.getElementById('deposit-modal').classList.remove('hidden');
+        }
+
+        function closeDepositModal() {
+            playSound('click');
+            document.getElementById('deposit-modal').classList.add('hidden');
+        }
+
+        function setDeposit(amount) {
+            playSound('click');
+            document.getElementById('deposit-amount').value = amount;
+        }
+
+        function confirmDeposit() {
+            const amount = parseFloat(document.getElementById('deposit-amount').value);
+            if (!amount || amount <= 0) return;
+
+            playSound('win');
+            userBalance += amount;
+            updateBalanceUI();
+            closeDepositModal();
+
+            historyLog.unshift({
+                type: 'Пополнение',
+                details: 'Банковская карта / СБП',
+                amount: `+${amount.toLocaleString()} ₽`,
+                status: 'Успешно',
+                time: 'Только что'
+            });
+
+            showToast(`Баланс успешно пополнен на ${amount.toLocaleString()} ₽!`, 'success');
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bgClass = 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300';
+            let icon = 'fa-circle-check';
+            if (type === 'error') {
+                bgClass = 'bg-red-500/20 border-red-500/40 text-red-300';
+                icon = 'fa-circle-exclamation';
+            } else if (type === 'info') {
+                bgClass = 'bg-blue-500/20 border-blue-500/40 text-blue-300';
+                icon = 'fa-circle-info';
+            }
+
+            toast.className = `glass px-4 py-3 rounded-xl border ${bgClass} shadow-xl flex items-center space-x-3 pointer-events-auto transition-all animate-bounce`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-lg"></i>
+                <span class="text-sm font-semibold">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Initialize App on Window Load
+        window.onload = function() {
+            renderCases();
+            updateUpgradeUI();
+            updateBalanceUI();
+        };
+    </script>
+</body>
+</html>
